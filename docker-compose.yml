@@ -1,0 +1,18 @@
+version: "3"
+services:
+    tor:
+        command: ["tor"]
+        container_name: tor-container
+        image: cyclopszhao/tor:latest
+        networks:
+            - tor
+        ports:
+            - "9050:9050"
+        restart: always
+        tty: true
+        volumes:
+            - ./torrc:/etc/tor/torrc
+            - ./tor:/var/lib/tor
+networks:
+    tor:
+        driver: bridge
